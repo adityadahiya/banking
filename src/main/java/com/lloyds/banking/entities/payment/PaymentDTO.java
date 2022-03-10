@@ -1,30 +1,16 @@
-package com.lloyds.banking.entities;
-import javax.persistence.*;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
+package com.lloyds.banking.entities.payment;
 
 import java.time.LocalDate;
 
-@Entity
-@Table(name = "payment")
-public class Payment {
+import com.fasterxml.jackson.annotation.JsonFormat;
 
-    @Id
-    @GeneratedValue
-    private Long id;
+public class PaymentDTO {
     private Long fromAccountNo;
     private Long toAccountNo;
     @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
     private LocalDate lastUpdate;
     private Long amount;
 
-    public Long getId() {
-        return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public Long getFromAccountNo() {
         return this.fromAccountNo;
