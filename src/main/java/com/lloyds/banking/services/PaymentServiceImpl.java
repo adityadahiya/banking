@@ -1,4 +1,5 @@
 package com.lloyds.banking.services;
+
 import com.lloyds.banking.entities.account.Account;
 import com.lloyds.banking.entities.payment.Payment;
 import com.lloyds.banking.entities.payment.PaymentDTO;
@@ -14,20 +15,20 @@ import java.time.LocalDate;
 
 @Transactional
 @Service
-public class PaymentServiceImpl implements PaymentService{
-@Autowired
-PaymentRepository paymentRepository;
-@Autowired
-AccountRepository accountRepository;
+public class PaymentServiceImpl implements PaymentService {
+    @Autowired
+    PaymentRepository paymentRepository;
+    @Autowired
+    AccountRepository accountRepository;
 
     public Payment addPayment(PaymentDTO paymentDTO) {
-        //For Debit
+        // For Debit
         Account account = accountRepository.findByAccountNo(paymentDTO.getFromAccountNo());
         account.setBalance(account.getBalance() - paymentDTO.getAmount());
         accountRepository.save(account);
-        Payment paymentDB = saveDebitAndCreditPayments(paymentDTO, account, PaymentType.DEBIT);        
-        
-        //For Credit
+        Payment paymentDB = saveDebitAndCreditPayments(paymentDTO, account, PaymentType.DEBIT);
+
+        // For Credit
         account = accountRepository.findByAccountNo(paymentDTO.getToAccountNo());
         account.setBalance(account.getBalance() + paymentDTO.getAmount());
         accountRepository.save(account);
@@ -43,7 +44,7 @@ AccountRepository accountRepository;
         return paymentRepository.save(payment);
     }
 
-    public List<Payment> getLast10Payments(Long accountID) {
+    public List<Payment> getLast10Payments() {
         return paymentRepository.findFirst10ByOrderByLastUpdateDesc();
     };
 

@@ -1,6 +1,8 @@
 package com.lloyds.banking.entities.payment;
+
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.lloyds.banking.entities.account.Account;
 
@@ -13,14 +15,16 @@ public class Payment {
     @Id
     @GeneratedValue
     private Long id;
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Long fromAccountNo;
     private Long toAccountNo;
     private LocalDate lastUpdate;
     private Long amount;
     private PaymentType paymentType;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
+    @JsonBackReference
+    @JoinColumn(name="account_id", nullable=false)
     private Account account;
 
     public Long getId() {

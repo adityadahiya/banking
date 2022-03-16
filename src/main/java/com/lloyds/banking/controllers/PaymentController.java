@@ -17,9 +17,9 @@ public class PaymentController {
     PaymentService paymentService;
 
     @GetMapping
-    public List<Payment> getLast10Payments(@PathVariable Long accountID) throws CustomException {
+    public List<Payment> getLast10Payments() throws CustomException {
         try{
-            return paymentService.getLast10Payments(accountID);
+            return paymentService.getLast10Payments();
         }
         catch(Exception exception){
             System.out.println(exception);

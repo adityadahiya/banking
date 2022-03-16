@@ -3,6 +3,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.lloyds.banking.entities.payment.Payment;
 
 @Entity
@@ -16,7 +17,7 @@ public class Account {
     private Long accountNo;
     private String name;
     private Long balance;
-    
+    @JsonManagedReference
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
     private List<Payment> payments;
     

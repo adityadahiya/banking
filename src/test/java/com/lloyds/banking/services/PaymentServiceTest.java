@@ -5,7 +5,6 @@ import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.lloyds.banking.entities.account.Account;
 import com.lloyds.banking.entities.payment.Payment;
 import com.lloyds.banking.entities.payment.PaymentType;
 import com.lloyds.banking.repositories.AccountRepository;

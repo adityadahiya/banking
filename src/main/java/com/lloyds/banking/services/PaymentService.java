@@ -7,7 +7,7 @@ import java.time.LocalDate;
 public interface PaymentService {
 
     public Payment addPayment(PaymentDTO paymentDTO);
-    public List<Payment> getLast10Payments(Long accountID);
+    public List<Payment> getLast10Payments();
     public List<Payment> getPaymentsByDate(Long accountID, LocalDate fromDate, LocalDate toDate);
     public List<Payment> getPaymentsByAccountID(Long accountID);
 }
